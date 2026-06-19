@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import SplashScreen from '@/frontend_lib/components/SplashScreen';
 import CountdownSection from '@/frontend_lib/components/CountdownSection';
+import LocationSection from '@/frontend_lib/components/LocationSection';
 import RSVPForm from '@/frontend_lib/components/RSVPForm';
 import WeddingParticles from '@/frontend_lib/components/WeddingParticles';
 
@@ -96,6 +97,10 @@ export default function Home() {
 
           <section className="countdown-section">
             <CountdownSection />
+          </section>
+
+          <section className="location-section">
+            <LocationSection />
           </section>
 
           <section id="rsvp-section" className="rsvp-section">

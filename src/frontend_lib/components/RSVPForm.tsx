@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 export default function RSVPForm() {
   const [fullName, setFullName] = useState('');
   const [attending, setAttending] = useState<boolean | null>(null);
+  const [guestsCount, setGuestsCount] = useState<number>(0);
   const [message, setMessage] = useState('');
   const [signature, setSignature] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -45,6 +46,7 @@ export default function RSVPForm() {
         body: JSON.stringify({
           fullName,
           attending,
+          guestsCount,
           message,
           signature,
         }),
@@ -117,6 +119,26 @@ export default function RSVPForm() {
             </button>
           </div>
         </div>
+
+        {attending && (
+          <div className="form-group">
+            <label htmlFor="guestsCount">How many people will come with you?</label>
+            <select
+              id="guestsCount"
+              className="rsvp-input"
+              value={guestsCount}
+              onChange={(e) => setGuestsCount(parseInt(e.target.value, 10))}
+              required
+            >
+              <option value={0}>Just me</option>
+              <option value={1}>1 guest</option>
+              <option value={2}>2 guests</option>
+              <option value={3}>3 guests</option>
+              <option value={4}>4 guests</option>
+              <option value={5}>5 guests</option>
+            </select>
+          </div>
+        )}
 
         <div className="form-group">
           <label htmlFor="message">Message for the couple</label>

@@ -26,9 +26,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const guestsCount = typeof body.guestsCount === 'number' ? body.guestsCount : parseInt(body.guestsCount) || 0;
+
     const newRsvp = await RsvpService.createRsvp({
       fullName: body.fullName,
       attending: body.attending,
+      guestsCount,
       message: body.message || '',
       signature: body.signature,
     });

@@ -5,6 +5,7 @@ export interface RSVP {
   _id?: ObjectId;
   fullName: string;
   attending: boolean;
+  guestsCount: number;
   message?: string;
   signature: string;
   createdAt: Date;

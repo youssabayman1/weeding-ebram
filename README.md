@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weading Ebram Full-Stack Next.js Application
 
-## Getting Started
+A unified full-stack application built using **Next.js (App Router)** and **MongoDB**, featuring a clean separation of concerns. Both the frontend web interface and the backend API routes run simultaneously on the same Node.js server.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📁 Project Architecture
+
+The codebase separates the presentation layer (frontend) from the business logic and infrastructure (backend) as follows:
+
+```
+weading-ebram/
+├── src/
+│   ├── app/
+│   │   ├── api/                     # Backend Endpoints
+│   │   │   ├── health/route.ts      # Health check and DB check route
+│   │   │   └── todos/               # CRUD endpoints for Todos
+│   │   ├── globals.css              # Custom Vanilla CSS styling system
+│   │   ├── layout.tsx               # Main HTML wrap and configuration
+│   │   └── page.tsx                 # Dashboard container (Client Entrypoint)
+│   │
+│   ├── frontend_lib/                # Frontend Modules
+│   │   ├── components/              # UI Components (ConnectionStatus, TodoForm, etc.)
+│   │   ├── hooks/                   # Custom Hooks (useTodos state hooks)
+│   │   └── types/                   # Frontend typings and interfaces
+│   │
+│   ├── backend_lib/                 # Backend Modules
+│   │   ├── infrastructure/          # Database pools (mongodb connection cache)
+│   │   ├── services/                # Business logic services (TodoService CRUD)
+│   │   └── types/                   # Backend type definitions
+│   │
+│   └── lib/                         # Shared utilities and helpers
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Path Aliases
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To keep imports clean and prevent deep relative pathing (e.g. `../../../../components`), custom path aliases are defined in `tsconfig.json`:
 
-## Learn More
+* `@/frontend_lib/*` maps to `src/frontend_lib/*`
+* `@/backend_lib/*` maps to `src/backend_lib/*`
+* `@/app/*` maps to `src/app/*`
+* `@/lib/*` maps to `src/lib/*`
 
-To learn more about Next.js, take a look at the following resources:
+Example:
+```typescript
+import { TodoService } from '@/backend_lib/services/todoService';
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⚙️ Environment Variables
 
-## Deploy on Vercel
+The project loads variables from `.env.local`. Create or edit `.env.local` in the root folder with:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+DEBUG="true"
+NEXT_PUBLIC_DEBUG="true"
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# MongoDB connection configurations
+MONGODB_USERNAME="pepocristano_db_user"
+MONGODB_PASSWORD="NiFCaXTrjPCS3rnq"
+MONGODB_URI="mongodb+srv://pepocristano_db_user:NiFCaXTrjPCS3rnq@youssab.qh"
+```
+
+> [!NOTE]
+> Ensure the MongoDB Atlas cluster network settings allow connections from your current development IP address.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Installation
+Install all dependencies using npm:
+```bash
+npm install
+```
+
+### 2. Run the Development Server
+Run the unified command to launch the hot-reloaded local web server and API layer:
+```bash
+npm run dev
+```
+
+The application will be running at [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 📜 Available Scripts
+
+In the project root, you can run:
+
+* `npm run dev` - Runs the app in development mode on `localhost:3000`.
+* `npm run build` - Builds the application for production usage into `.next/`.
+* `npm run start` - Runs the built production server.
+* `npm run lint` - Performs code analysis using ESLint rules.

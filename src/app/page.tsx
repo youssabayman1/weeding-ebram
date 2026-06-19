@@ -6,6 +6,7 @@ import CountdownSection from '@/frontend_lib/components/CountdownSection';
 import LocationSection from '@/frontend_lib/components/LocationSection';
 import RSVPForm from '@/frontend_lib/components/RSVPForm';
 import WeddingParticles from '@/frontend_lib/components/WeddingParticles';
+import BackgroundMusic from '@/frontend_lib/components/BackgroundMusic';
 
 type ScreenState = 'splash' | 'intro' | 'main';
 
@@ -40,6 +41,8 @@ export default function Home() {
 
   return (
     <>
+      <BackgroundMusic shouldPlay={screen !== 'splash'} />
+
       {screen === 'splash' && <SplashScreen onOpen={handleOpenSplash} />}
 
       {screen === 'intro' && (

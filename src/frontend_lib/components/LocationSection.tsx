@@ -12,6 +12,50 @@ export default function LocationSection() {
 
   return (
     <div className="location-section-container" style={{ gap: '2rem', flexWrap: 'wrap' }}>
+      {/* Church Location Card */}
+      <div className="location-card">
+        <div className="location-icon-wrapper">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+
+        <h2 className="location-title">Church Ceremony</h2>
+        <p className="location-venue">We joyfully invite you to the Divine Liturgy at St. Ruwis and virgin Mary church, gate 4, pyramids gardens, Giza</p>
+
+        <div className="location-time">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span>Starts from 6:00 PM</span>
+        </div>
+
+        <div className="map-container" style={{ marginTop: '2rem' }}>
+          <iframe
+            src={churchEmbedUrl}
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen={false}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Church Location Map"
+          ></iframe>
+        </div>
+
+        <div className="location-actions">
+          <a href={churchMapUrl} target="_blank" rel="noopener noreferrer" className="location-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Open in Maps
+          </a>
+        </div>
+      </div>
+
       {/* Reception Location Card */}
       <div className="location-card">
         <div className="location-icon-wrapper">
@@ -61,50 +105,6 @@ export default function LocationSection() {
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
             Add to calendar
-          </a>
-        </div>
-      </div>
-
-      {/* Church Location Card */}
-      <div className="location-card">
-        <div className="location-icon-wrapper">
-          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-            <circle cx="12" cy="10" r="3"></circle>
-          </svg>
-        </div>
-
-        <h2 className="location-title">Church Ceremony</h2>
-        <p className="location-venue">We joyfully invite you to the Divine Liturgy at St. Ruwis and virgin Mary church, gate 4, pyramids gardens, Giza</p>
-
-        <div className="location-time">
-          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-          <span>Starts from 6:00 PM</span>
-        </div>
-
-        <div className="map-container" style={{ marginTop: '2rem' }}>
-          <iframe
-            src={churchEmbedUrl}
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen={false}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Church Location Map"
-          ></iframe>
-        </div>
-
-        <div className="location-actions">
-          <a href={churchMapUrl} target="_blank" rel="noopener noreferrer" className="location-btn">
-            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            Open in Maps
           </a>
         </div>
       </div>

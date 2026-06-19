@@ -65,10 +65,7 @@ export default function CountdownSection() {
         </div>
       </div>
 
-      <div className="programme-header-group">
-        <h2 className="programme-title">Day Programme</h2>
-        <p className="programme-subtitle">What we have planned for you</p>
-      </div>
+
     </div>
   );
 }

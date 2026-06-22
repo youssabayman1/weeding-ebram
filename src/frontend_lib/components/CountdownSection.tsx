@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '@/frontend_lib/context/LanguageContext';
 
 export default function CountdownSection() {
+  const { t } = useLanguage();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -39,29 +41,29 @@ export default function CountdownSection() {
   return (
     <div className="countdown-wrapper">
       <div className="countdown-header-group">
-        <h2 className="countdown-title">Countdown</h2>
-        <p className="countdown-subtitle">To the big day</p>
+        <h2 className="countdown-title">{t('countdownTitle')}</h2>
+        <p className="countdown-subtitle">{t('countdownSubtitle')}</p>
       </div>
 
       <div className="countdown-timer">
         <div className="time-block">
           <span className="time-value">{formatNumber(timeLeft.days)}</span>
-          <span className="time-label">DAYS</span>
+          <span className="time-label">{t('days')}</span>
         </div>
         <span className="time-separator">✦</span>
         <div className="time-block">
           <span className="time-value">{formatNumber(timeLeft.hours)}</span>
-          <span className="time-label">HOURS</span>
+          <span className="time-label">{t('hours')}</span>
         </div>
         <span className="time-separator">✦</span>
         <div className="time-block">
           <span className="time-value">{formatNumber(timeLeft.minutes)}</span>
-          <span className="time-label">MINUTES</span>
+          <span className="time-label">{t('minutes')}</span>
         </div>
         <span className="time-separator">✦</span>
         <div className="time-block">
           <span className="time-value">{formatNumber(timeLeft.seconds)}</span>
-          <span className="time-label">SECONDS</span>
+          <span className="time-label">{t('seconds')}</span>
         </div>
       </div>
 

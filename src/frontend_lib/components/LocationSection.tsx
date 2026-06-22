@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import { useLanguage } from '@/frontend_lib/context/LanguageContext';
 
 export default function LocationSection() {
+  const { t } = useLanguage();
   const partyMapUrl = "https://www.google.com/maps?q=2CX3+33R+Jewel+Sports+City+Resort+%26+Spa,+Zhraa+Nasr+City+-+Msaken+Al+Dobaet,+Al+Hay+Al+Asher,+Nasr+City,+Cairo+Governorate+4444161&ftid=0x14583d0bd8161ca9:0x524a3140233e28c3&entry=gps&shh=CAE";
   const partyEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.6067756854124!2d31.3653153!3d30.0481284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583d0bd8161ca9%3A0x524a3140233e28c3!2sJewel%20Sports%20City%20Resort%20%26%20Spa!5e0!3m2!1sen!2seg!4v1714856412345!5m2!1sen!2seg";
   const partyCalendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ebram+%26+Marina's+Wedding&dates=20260903T163000Z/20260903T233000Z&details=Celebrating+our+special+day!&location=Jewel+Sports+City+Resort+%26+Spa,+Nasr+City,+Cairo";
@@ -21,15 +23,15 @@ export default function LocationSection() {
           </svg>
         </div>
 
-        <h2 className="location-title">Church Ceremony</h2>
-        <p className="location-venue">We joyfully invite you to the Divine Liturgy at St. Ruwis and virgin Mary church, gate 4, pyramids gardens, Giza</p>
+        <h2 className="location-title">{t('churchCeremony')}</h2>
+        <p className="location-venue">{t('churchVenue')}</p>
 
         <div className="location-time">
           <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
-          <span>Starts from 6:00 PM</span>
+          <span>{t('churchTime')}</span>
         </div>
 
         <div className="map-container" style={{ marginTop: '2rem' }}>
@@ -51,7 +53,7 @@ export default function LocationSection() {
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
-            Open in Maps
+            {t('openInMaps')}
           </a>
         </div>
       </div>
@@ -65,15 +67,15 @@ export default function LocationSection() {
           </svg>
         </div>
 
-        <h2 className="location-title">Wedding Venue</h2>
-        <p className="location-venue">Diamond Hall at Jewel Sports City Resort & Spa</p>
+        <h2 className="location-title">{t('weddingVenue')}</h2>
+        <p className="location-venue">{t('receptionVenue')}</p>
 
         <div className="location-time">
           <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
-          <span>From 8:30 PM to 12:00 AM</span>
+          <span>{t('receptionTime')}</span>
         </div>
 
         <div className="map-container">
@@ -95,7 +97,7 @@ export default function LocationSection() {
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
-            Open in Maps
+            {t('openInMaps')}
           </a>
           <a href={partyCalendarUrl} target="_blank" rel="noopener noreferrer" className="location-btn outline">
             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -104,7 +106,7 @@ export default function LocationSection() {
               <line x1="8" y1="2" x2="8" y2="6"></line>
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
-            Add to calendar
+            {t('addToCalendar')}
           </a>
         </div>
       </div>

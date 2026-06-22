@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '@/frontend_lib/context/LanguageContext';
 
 export default function RSVPForm() {
+  const { t } = useLanguage();
   const [fullName, setFullName] = useState('');
   const [attending, setAttending] = useState<boolean | null>(null);
   const [guestsCount, setGuestsCount] = useState<number>(0);
@@ -26,11 +28,11 @@ export default function RSVPForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (attending === null) {
-      setErrorMessage('Please let us know if you will attend.');
+      setErrorMessage(t('letUsKnow'));
       return;
     }
     if (!fullName.trim() || !signature.trim()) {
-      setErrorMessage('Please fill out all required fields.');
+      setErrorMessage(t('fillRequired'));
       return;
     }
 
@@ -72,8 +74,8 @@ export default function RSVPForm() {
   if (status === 'success') {
     return (
       <div className="rsvp-success-message">
-        <h3>Thank you!</h3>
-        <p>Your RSVP has been successfully received.</p>
+        <h3>{t('successMessage')}</h3>
+        <p>{t('successDesc')}</p>
         <p className="rsvp-success-signature">{signature}</p>
       </div>
     );
@@ -82,18 +84,18 @@ export default function RSVPForm() {
   return (
     <div className="rsvp-form-container">
       <div className="rsvp-header">
-        <h2>Confirm your attendance</h2>
-        <p>We hope to count on you</p>
+        <h2>{t('rsvpTitle')}</h2>
+        <p>{t('rsvpSubtitle')}</p>
       </div>
 
       <form onSubmit={handleSubmit} className="rsvp-form">
         <div className="form-group">
-          <label htmlFor="fullName">Full name *</label>
+          <label htmlFor="fullName">{t('nameLabel')}</label>
           <input
             type="text"
             id="fullName"
             className="rsvp-input"
-            placeholder="Your name"
+            placeholder={t('namePlaceholder')}
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             required
@@ -101,28 +103,28 @@ export default function RSVPForm() {
         </div>
 
         <div className="form-group attending-group">
-          <label>Will you attend?</label>
+          <label>{t('attendanceLabel')}</label>
           <div className="attending-options">
             <button
               type="button"
               className={`attending-btn ${attending === true ? 'selected yes' : ''}`}
               onClick={() => setAttending(true)}
             >
-              Yes, I'll be there! 🎉
+              {t('yes')}
             </button>
             <button
               type="button"
               className={`attending-btn ${attending === false ? 'selected no' : ''}`}
               onClick={() => setAttending(false)}
             >
-              Sorry, I can't make it 😢
+              {t('no')}
             </button>
           </div>
         </div>
 
         {attending && (
           <div className="form-group">
-            <label htmlFor="guestsCount">How many people will come with you?</label>
+            <label htmlFor="guestsCount">{t('guestsLabel')}</label>
             <select
               id="guestsCount"
               className="rsvp-input"
@@ -130,22 +132,22 @@ export default function RSVPForm() {
               onChange={(e) => setGuestsCount(parseInt(e.target.value, 10))}
               required
             >
-              <option value={0}>Just me</option>
-              <option value={1}>1 guest</option>
-              <option value={2}>2 guests</option>
-              <option value={3}>3 guests</option>
-              <option value={4}>4 guests</option>
-              <option value={5}>5 guests</option>
+              <option value={0}>{t('guests0')}</option>
+              <option value={1}>{t('guests1')}</option>
+              <option value={2}>{t('guests2')}</option>
+              <option value={3}>{t('guests3')}</option>
+              <option value={4}>{t('guests4')}</option>
+              <option value={5}>{t('guests5')}</option>
             </select>
           </div>
         )}
 
         <div className="form-group">
-          <label htmlFor="message">Message for the couple</label>
+          <label htmlFor="message">{t('messageLabel')}</label>
           <textarea
             id="message"
             className="rsvp-textarea"
-            placeholder="Write a message..."
+            placeholder={t('messagePlaceholder')}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={3}
@@ -153,17 +155,17 @@ export default function RSVPForm() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="signature">Signature *</label>
+          <label htmlFor="signature">{t('signatureLabel')}</label>
           <input
             type="text"
             id="signature"
             className="rsvp-input signature-input"
-            placeholder="Sign your name"
+            placeholder={t('signaturePlaceholder')}
             value={signature}
             onChange={(e) => setSignature(e.target.value)}
             required
           />
-          <small className="signature-hint">Type your name to sign the guestbook</small>
+          <small className="signature-hint">{t('signatureHint')}</small>
         </div>
 
         {errorMessage && <div className="rsvp-error">{errorMessage}</div>}
@@ -173,7 +175,7 @@ export default function RSVPForm() {
           className={`rsvp-submit-btn ${status === 'loading' ? 'loading' : ''}`}
           disabled={status === 'loading'}
         >
-          {status === 'loading' ? 'Sending...' : 'Send confirmation'}
+          {status === 'loading' ? t('sending') : t('submit')}
         </button>
       </form>
     </div>

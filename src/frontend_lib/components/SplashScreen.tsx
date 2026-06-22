@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useLanguage } from '@/frontend_lib/context/LanguageContext';
 
 interface SplashScreenProps {
   onOpen: () => void;
 }
 
 export default function SplashScreen({ onOpen }: SplashScreenProps) {
-  const [language, setLanguage] = useState<'EN' | 'AR'>('EN');
+  const { t } = useLanguage();
   const [isOpening, setIsOpening] = useState(false);
 
   const handleOpen = () => {
@@ -31,20 +32,6 @@ export default function SplashScreen({ onOpen }: SplashScreenProps) {
 
       {/* Center Interactive Button & Language */}
       <div className={`splash-ui ${isOpening ? 'fade-out' : ''}`}>
-        <div className="splash-lang-toggle">
-          <button
-            className={`lang-btn ${language === 'EN' ? 'active' : ''}`}
-            onClick={() => setLanguage('EN')}
-          >
-            EN
-          </button>
-          <button
-            className={`lang-btn ${language === 'AR' ? 'active' : ''}`}
-            onClick={() => setLanguage('AR')}
-          >
-            عربي
-          </button>
-        </div>
 
         <div className="splash-center-action">
           <button className="tap-open-btn" onClick={handleOpen}>
@@ -53,7 +40,7 @@ export default function SplashScreen({ onOpen }: SplashScreenProps) {
                 <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
               </svg>
             </div>
-            <span className="tap-open-text">TAP TO OPEN</span>
+            <span className="tap-open-text">{t('tapToOpen')}</span>
           </button>
         </div>
       </div>

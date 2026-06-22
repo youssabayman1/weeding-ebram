@@ -7,12 +7,15 @@ import LocationSection from '@/frontend_lib/components/LocationSection';
 import RSVPForm from '@/frontend_lib/components/RSVPForm';
 import WeddingParticles from '@/frontend_lib/components/WeddingParticles';
 import BackgroundMusic from '@/frontend_lib/components/BackgroundMusic';
+import LanguageSwitcher from '@/frontend_lib/components/LanguageSwitcher';
+import { useLanguage } from '@/frontend_lib/context/LanguageContext';
 
 type ScreenState = 'splash' | 'intro' | 'main';
 
 export default function Home() {
   const [screen, setScreen] = useState<ScreenState>('splash');
   const [isFadingOutIntro, setIsFadingOutIntro] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (screen === 'intro') {
@@ -41,6 +44,7 @@ export default function Home() {
 
   return (
     <>
+      <LanguageSwitcher />
       <BackgroundMusic shouldPlay={screen !== 'splash'} />
 
       {screen === 'splash' && <SplashScreen onOpen={handleOpenSplash} />}
@@ -48,19 +52,19 @@ export default function Home() {
       {screen === 'intro' && (
         <main className="wedding-container intro-screen fade-in">
           <div className={`wedding-content ${isFadingOutIntro ? 'fade-out' : ''}`}>
-            <div className="invite-text reveal-anim delay-1">Together with their families</div>
+            <div className="invite-text reveal-anim delay-1">{t('togetherWith')}</div>
             <h1 className="names reveal-anim delay-2">
-              Ebram
+              {t('ebram')}
               <br />
               <span className="ampersand">&</span>
               <br />
-              Marina
+              {t('marina')}
             </h1>
             <div className="date-section reveal-anim delay-3">
-              <span className="date">SEPTEMBER 3, 2026</span>
+              <span className="date">{t('date')}</span>
             </div>
             <div className="location-text reveal-anim delay-4">
-              Celebrating our special day
+              {t('celebrating')}
             </div>
           </div>
         </main>
@@ -72,23 +76,23 @@ export default function Home() {
             <div className="hero-bg-anim"></div>
             <WeddingParticles />
             <div className="main-content">
-              <div className="main-header">WE'RE GETTING MARRIED</div>
+              <div className="main-header">{t('wereGettingMarried')}</div>
               <h1 className="main-names">
-                Ebram
+                {t('ebram')}
                 <br />
                 <span className="gold-ampersand">&</span>
                 <br />
-                Marina
+                {t('marina')}
               </h1>
 
               <div className="decorative-line">
                 <span className="star">✦</span>
               </div>
 
-              <div className="main-date">September 3, 2026</div>
+              <div className="main-date">{t('date')}</div>
 
               <div className="bottom-action">
-                <div className="confirm-text">CONFIRM YOUR ATTENDANCE</div>
+                <div className="confirm-text">{t('confirmAttendance')}</div>
                 <div className="chevron-down">
                   <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />

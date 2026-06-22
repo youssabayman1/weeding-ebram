@@ -65,7 +65,7 @@ export default function LocationSection() {
           </svg>
         </div>
 
-        <h2 className="location-title">Reception</h2>
+        <h2 className="location-title">Wedding Venue</h2>
         <p className="location-venue">Diamond Hall at Jewel Sports City Resort & Spa</p>
 
         <div className="location-time">

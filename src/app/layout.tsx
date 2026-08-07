@@ -14,8 +14,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Weading Ebram App - Full-Stack Dashboard",
-  description: "A Next.js full-stack application with unified frontend and backend services.",
+  metadataBase: new URL("https://weeding-ebram.vercel.app"),
+  title: "Ebram & Marina Wedding",
+  description: "We joyfully invite you to celebrate the wedding of Ebram & Marina. Join us on September 3, 2026.",
+  applicationName: "Ebram & Marina Wedding",
+  openGraph: {
+    title: "Ebram & Marina Wedding",
+    description: "We joyfully invite you to celebrate the wedding of Ebram & Marina. Join us on September 3, 2026.",
+    url: "https://weeding-ebram.vercel.app",
+    siteName: "Ebram & Marina Wedding",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ebram & Marina Wedding",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ebram & Marina Wedding",
+    description: "We joyfully invite you to celebrate the wedding of Ebram & Marina. Join us on September 3, 2026.",
+    images: ["/og-image.jpg"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
